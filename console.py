@@ -112,9 +112,9 @@ class HBNBCommand(cmd.Cmd):
         """Exits the HRBNB cmd line interpreter"""
         return True
 
-    def do_EOF(self, line):
-        """Exits the HRBNB cmd line interpreter"""
-        return True
+    def help_quit(self):
+        """Help for quit cmd"""
+        print('Quit the application. type: quit')
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
