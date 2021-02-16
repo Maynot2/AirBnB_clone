@@ -53,8 +53,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
     def do_create(self, args=''):
-        """
-            Instanciate a new object of a given class
+        """Instanciate a new object of a given class
             Takes 2 positional arguments:
                 self
                cls: The name of the class of the object to be created
@@ -70,7 +69,8 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
 
     def do_show(self, args=''):
-        """Shows a given instance"""
+        """Shows a given instance
+        """
         args = args.split()
         if HBNBCommand.has_class(len(args)) and HBNBCommand.has_id(len(args)):
             cls, ID = args
@@ -81,7 +81,8 @@ class HBNBCommand(cmd.Cmd):
             print(models.storage.all()[key])
 
     def do_destroy(self, args):
-        """Destroys a given instance"""
+        """Destroys a given instance
+        """
         args = args.split()
         if HBNBCommand.has_class(len(args)) and HBNBCommand.has_id(len(args)):
             cls, ID = args
@@ -94,8 +95,7 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def do_all(self, args):
-        """
-            Shows all instances of a given class or all instances of all
+        """Shows all instances of a given class or all instances of all
             classes if no argument given
         """
         args = args.split()
@@ -109,12 +109,21 @@ class HBNBCommand(cmd.Cmd):
                     print(json_obj[key])
 
     def do_quit(self, args):
-        """Exits the HRBNB cmd line interpreter"""
+        """Exits the HRBNB cmd line interpreter
+        """
         return True
 
     def do_EOF(self, args):
-        """Exits on EOF and CTRL-D"""
+        """Exits on CTRL-D
+        """
         return self.do_quit(args)
+
+    def emptyline(self):
+        """
+            Overides normal behaviour. Doesn't repeat last command when empty
+            line is entered
+        """
+        return False
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
