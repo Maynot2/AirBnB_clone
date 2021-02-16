@@ -5,6 +5,7 @@
 import cmd
 import json
 import models
+from models.user import User
 BaseModel = models.base_model.BaseModel
 
 
@@ -15,7 +16,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
     __models = {
-        'BaseModel': BaseModel
+        'BaseModel': BaseModel,
+        'User': User
     }
 
     @staticmethod
