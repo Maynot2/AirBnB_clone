@@ -108,13 +108,13 @@ class HBNBCommand(cmd.Cmd):
                 if key.startswith('{}.'.format(args[0])):
                     print(json_obj[key])
 
-    def do_quit(self, line):
+    def do_quit(self, args):
         """Exits the HRBNB cmd line interpreter"""
         return True
 
-    def help_quit(self):
-        """Help for quit cmd"""
-        print('Quit the application. type: quit')
+    def do_EOF(self, args):
+        """Exits on EOF and CTRL-D"""
+        return self.do_quit(args)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
