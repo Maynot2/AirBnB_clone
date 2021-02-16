@@ -37,8 +37,9 @@ class BaseModel:
             Returns a custom string representation of a BaseModel instance
         """
         return "[{}] ({}) {}".format(type(self).__name__,
-                                           self.id,
-                                           self.__dict__)
+                                     self.id,
+                                     self.__dict__)
+
     @staticmethod
     def are_valid_args(args):
         """
