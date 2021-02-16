@@ -108,6 +108,45 @@ class HBNBCommand(cmd.Cmd):
                 if key.startswith('{}.'.format(args[0])):
                     print(json_obj[key])
 
+    def do_update(self, args):
+        """Updates a given instance
+            Usage:
+            update <class name> <id> <attribute name> "<attribute value>"
+        """
+        args = args.split()
+        size = len(args)
+        if size == 0:
+            print('** class name missing **')
+            return False
+        if size >= 1:
+            cls = args[0]
+            if cls not in HBNBCommand.__models:
+                print("** class doesn't exist **")
+                return False
+            if size == 1:
+                print('** instance id missing **')
+                return False
+        if size >= 2:
+            ID = args[1]
+            key = '{}.{}'.format(cls, ID)
+            if key not in models.storage.all():
+                print('** no instance found **')
+                return False
+            if size == 2:
+                print('** attribute name missing **')
+                return False
+        if size == 3:
+            print('** value missing **')
+            return False
+        if size >= 4:
+            attr = args[2]
+            val = args[3]
+            if val[0] == '"' and val[-1] == '"':
+                val = val[1:-1]
+            obj = models.storage.all()[key]
+            BaseModel.update(obj, {attr: val})
+            BaseModel.save(obj)
+
     def do_quit(self, args):
         """Exits the HRBNB cmd line interpreter
         """
