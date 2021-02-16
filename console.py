@@ -93,6 +93,21 @@ class HBNBCommand(cmd.Cmd):
             del json_obj[key]
             models.storage.save()
 
+    def do_all(self, args):
+        """
+            Shows all instances of a given class or all instances of all
+            classes if no argument given
+        """
+        args = args.split()
+        json_obj = models.storage.all()
+        if not args:
+            for key in json_obj:
+                print(json_obj[key])
+        if args and HBNBCommand.is_valid_class(args[0]):
+            for key in json_obj:
+                if key.startswith('{}.'.format(args[0])):
+                    print(json_obj[key])
+
     def do_quit(self, line):
         """Exits the HRBNB cmd line interpreter"""
         return True
