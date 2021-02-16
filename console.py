@@ -2,7 +2,7 @@
 """
     Custom command line interface for ARBNB clone
 """
-import cmd, sys
+import cmd
 import json
 import models
 BaseModel = models.base_model.BaseModel
@@ -20,6 +20,7 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def is_valid_idkey(key=''):
+        """Checks if key is valid"""
         if key not in models.storage.all():
             print('** no instance found **')
             return False
@@ -27,6 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def has_id(size):
+        """Checks if id is present"""
         if size >= 2:
             return True
         else:
@@ -35,6 +37,7 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def is_valid_class(cls_name):
+        """Checks if class name exists"""
         if cls_name not in HBNBCommand.__models:
             print("** class doesn't exist **")
             return False
@@ -42,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def has_class(size):
+        """Checks if class is present"""
         if size > 0:
             return True
         else:
@@ -66,6 +70,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
 
     def do_show(self, args=''):
+        """Shows a given instance"""
         args = args.split()
         if HBNBCommand.has_class(len(args)) and HBNBCommand.has_id(len(args)):
             cls, ID = args
@@ -76,6 +81,7 @@ class HBNBCommand(cmd.Cmd):
             print(models.storage.all()[key])
 
     def do_destroy(self, args):
+        """Destroys a given instance"""
         args = args.split()
         if HBNBCommand.has_class(len(args)) and HBNBCommand.has_id(len(args)):
             cls, ID = args
