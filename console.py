@@ -31,9 +31,6 @@ class HBNBCommand(cmd.Cmd):
         'Review': Review
     }
 
-    __methods = {
-        'all'
-    }
 
     @staticmethod
     def is_valid_idkey(key=''):
@@ -96,6 +93,21 @@ class HBNBCommand(cmd.Cmd):
         key = '{}.{}'.format(cls, ID)
         if HBNBCommand.is_valid_class(cls) and HBNBCommand.is_valid_idkey(key):
             print(models.storage.all()[key])
+
+    def do_count(self, args=''):
+        """Counts instances of a given class
+        """
+        args = args.split()
+        count = 0
+        if HBNBCommand.has_class(len(args)):
+            cls = args[0]
+        if HBNBCommand.is_valid_class(cls):
+                json_obj = models.storage.all()
+                for key in json_obj:
+                    if key.startswith('{}.'.format(cls)):
+                        count += 1
+        print(count)
+
 
     def do_destroy(self, args):
         """Destroys a given instance
@@ -177,13 +189,17 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """overides default behaviour when command not found
         """
+        methods = {
+            'all': self.do_all,
+            'count': self.do_count
+        }
         args = line.split('.')
         if len(args) == 2:
             cls, method = args
             method = method[0:method.find('(')]
-            if (cls in HBNBCommand.__models and
-                method in HBNBCommand.__methods):
-                    self.do_all('{}'.format(cls))
+            if cls in HBNBCommand.__models and method in methods:
+                    do_ = methods[method]
+                    do_('{}'.format(cls))
                     return
         print('*** Unknown syntax: {}'.format(line))
 
