@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    Contains test cases for BasicModel objects
+    Contains test cases for FileStorage objects
 """
 import unittest
 import models
