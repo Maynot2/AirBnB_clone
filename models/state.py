@@ -5,7 +5,7 @@
 from models.base_model import BaseModel
 
 
-class User(BaseModel):
+class State(BaseModel):
     """
         Instantiates a new State with the given:
         # Public class attributes:
