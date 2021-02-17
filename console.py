@@ -4,6 +4,7 @@
 """
 import cmd
 import json
+import re
 import models
 from models.user import User
 from models.state import State
@@ -140,7 +141,11 @@ class HBNBCommand(cmd.Cmd):
             Usage:
             update <class name> <id> <attribute name> "<attribute value>"
         """
-        args = args.split()
+        if args.startswith('‡'):
+            args = args.split('‡')
+            args = args[1:]
+        else:
+            args = args.split()
         size = len(args)
         if size == 0:
             print('** class name missing **')
@@ -163,8 +168,13 @@ class HBNBCommand(cmd.Cmd):
                 print('** attribute name missing **')
                 return False
         if size == 3:
-            print('** value missing **')
-            return False
+            d = args[2]
+            if d[0] == '{' and d[-1] == '}':
+                obj = models.storage.all()[key]
+                BaseModel.update(obj, eval(d))
+            else:
+                print('** value missing **')
+                return False
         if size >= 4:
             attr = args[2]
             val = args[3]
@@ -199,11 +209,20 @@ class HBNBCommand(cmd.Cmd):
             cls, method = args
             meth_name = method[0:method.find('(')]
             meth_args = method[method.find('(') + 1:method.find(')')]
-            meth_args = meth_args.replace(',', ' ')
-            if cls in HBNBCommand.__models and meth_name in methods:
-                    do_ = methods[meth_name]
-                    do_('{} {}'.format(cls, meth_args))
-                    return
+            if meth_args[-1] == '}':
+                ID = re.findall(r'\w+-\w+-\w+-\w+-\w+', meth_args)[0]
+                d = '{' + re.findall(r'\{(.*?)\}', meth_args)[0] + '}'
+                if cls in HBNBCommand.__models and meth_name in methods:
+                        do_ = methods[meth_name]
+                        do_('‡{}‡{}‡{}'.format(cls, ID, d))
+                        return
+            else:
+                meth_args = meth_args.replace(',', ' ')
+                meth_args = meth_args.replace('"', '')
+                if cls in HBNBCommand.__models and meth_name in methods:
+                        do_ = methods[meth_name]
+                        do_('{} {}'.format(cls, meth_args))
+                        return
         print('*** Unknown syntax: {}'.format(line))
 
     def emptyline(self):
