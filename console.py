@@ -190,7 +190,9 @@ class HBNBCommand(cmd.Cmd):
         methods = {
             'all': self.do_all,
             'count': self.do_count,
-            'show': self.do_show
+            'show': self.do_show,
+            'destroy': self.do_destroy,
+            'update': self.do_update
         }
         args = line.split('.')
         if len(args) == 2:
