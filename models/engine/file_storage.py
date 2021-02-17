@@ -5,6 +5,12 @@
 import json
 from os import path
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage():
@@ -13,6 +19,7 @@ class FileStorage():
         # Private class attributes:
             __file_path
             __objects
+            __models
         # Public instance methods:
             all()
             new()
@@ -22,6 +29,15 @@ class FileStorage():
 
     __file_path = "file.json"
     __objects = {}
+    __models = {
+        'BaseModel' : BaseModel,
+        'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review
+    }
 
     def all(self):
         """
@@ -44,7 +60,7 @@ class FileStorage():
         for key, obj in FileStorage.__objects.items():
             json_obj[key] = obj.to_dict()
         with open(FileStorage.__file_path, 'w') as f:
-            json.dump(json_obj, f)
+            json.dump(json_obj, f, indent = 6)
 
     def reload(self):
         """
@@ -54,5 +70,6 @@ class FileStorage():
             with open(FileStorage.__file_path) as f:
                 json_obj = json.load(f)
             for key in json_obj:
-                obj = BaseModel(**json_obj[key])
+                cls = FileStorage.__models[key.split('.')[0]]
+                obj = cls(**json_obj[key])
                 self.new(obj)
