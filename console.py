@@ -31,6 +31,10 @@ class HBNBCommand(cmd.Cmd):
         'Review': Review
     }
 
+    __methods = {
+        'all'
+    }
+
     @staticmethod
     def is_valid_idkey(key=''):
         """Checks if key is valid"""
@@ -169,6 +173,19 @@ class HBNBCommand(cmd.Cmd):
         """Exits on CTRL-D
         """
         return self.do_quit(args)
+
+    def default(self, line):
+        """overides default behaviour when command not found
+        """
+        args = line.split('.')
+        if len(args) == 2:
+            cls, method = args
+            method = method[0:method.find('(')]
+            if (cls in HBNBCommand.__models and
+                method in HBNBCommand.__methods):
+                    self.do_all('{}'.format(cls))
+                    return
+        print('*** Unknown syntax: {}'.format(line))
 
     def emptyline(self):
         """
