@@ -31,7 +31,6 @@ class HBNBCommand(cmd.Cmd):
         'Review': Review
     }
 
-
     @staticmethod
     def is_valid_idkey(key=''):
         """Checks if key is valid"""
@@ -107,7 +106,6 @@ class HBNBCommand(cmd.Cmd):
                     if key.startswith('{}.'.format(cls)):
                         count += 1
         print(count)
-
 
     def do_destroy(self, args):
         """Destroys a given instance
@@ -191,15 +189,17 @@ class HBNBCommand(cmd.Cmd):
         """
         methods = {
             'all': self.do_all,
-            'count': self.do_count
+            'count': self.do_count,
+            'show': self.do_show
         }
         args = line.split('.')
         if len(args) == 2:
             cls, method = args
-            method = method[0:method.find('(')]
-            if cls in HBNBCommand.__models and method in methods:
-                    do_ = methods[method]
-                    do_('{}'.format(cls))
+            meth_name = method[0:method.find('(')]
+            meth_args = method[method.find('(') + 1:method.find(')')]
+            if cls in HBNBCommand.__models and meth_name in methods:
+                    do_ = methods[meth_name]
+                    do_('{} {}'.format(cls, meth_args))
                     return
         print('*** Unknown syntax: {}'.format(line))
 
