@@ -199,6 +199,7 @@ class HBNBCommand(cmd.Cmd):
             cls, method = args
             meth_name = method[0:method.find('(')]
             meth_args = method[method.find('(') + 1:method.find(')')]
+            meth_args = meth_args.replace(',', ' ')
             if cls in HBNBCommand.__models and meth_name in methods:
                     do_ = methods[meth_name]
                     do_('{} {}'.format(cls, meth_args))
