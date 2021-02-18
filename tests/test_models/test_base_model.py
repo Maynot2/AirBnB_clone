@@ -17,6 +17,10 @@ class TestBase(unittest.TestCase):
     def test_is_instance_of_BasicModel(self):
         self.assertIsInstance(self.b1, BaseModel)
 
+    def test_saving_BaseModel_object(self):
+        self.b1.save()
+        self.assertNotEqual(b1.created_at, b1.updated_at)
+
     def test_has_id(self):
         self.assertIsNotNone(self.b1.id)
 
