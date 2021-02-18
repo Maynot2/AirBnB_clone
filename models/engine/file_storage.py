@@ -30,7 +30,7 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
     __models = {
-        'BaseModel' : BaseModel,
+        'BaseModel': BaseModel,
         'User': User,
         'State': State,
         'City': City,
@@ -60,7 +60,7 @@ class FileStorage():
         for key, obj in FileStorage.__objects.items():
             json_obj[key] = obj.to_dict()
         with open(FileStorage.__file_path, 'w') as f:
-            json.dump(json_obj, f, indent = 6)
+            json.dump(json_obj, f, indent=6)
 
     def reload(self):
         """
