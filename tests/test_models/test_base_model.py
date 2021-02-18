@@ -21,6 +21,12 @@ class TestBase(unittest.TestCase):
         self.b1.save()
         self.assertNotEqual(self.b1.created_at, self.b1.updated_at)
 
+    def test__str__(self):
+        self.assertEqual(self.b1.__str__(),
+                         '[{}] ({}) {}'.format(type(self.b1).__name__,
+                                               self.b1.id,
+                                               self.b1.__dict__))
+
     def test_has_id(self):
         self.assertIsNotNone(self.b1.id)
 
