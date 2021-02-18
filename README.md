@@ -19,7 +19,7 @@ AirBnB_clone$ ./console
 (hbnb) create User
 ```
 ### Read (single instance)
-- usage 1: Show <model> <id>
+- usage 1: show \<model\> \<id\>
 ```
 (hbnb) show City a1651f54-8acd-4716-a8d7-12ec797ec84d
 ```
