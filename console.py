@@ -210,7 +210,9 @@ class HBNBCommand(cmd.Cmd):
             meth_name = method[0:method.find('(')]
             meth_args = method[method.find('(') + 1:method.find(')')]
             if re.search('{[^}]*}', meth_args):
-                ID = re.findall(r'\w+-\w+-\w+-\w+-\w+', meth_args)[0]
+                ID = "invalid"
+                if re.search(r'\w+-\w+-\w+-\w+-\w+', meth_args):
+                    ID = re.findall(r'\w+-\w+-\w+-\w+-\w+', meth_args)[0]
                 d = '{' + re.findall(r'\{(.*?)\}', meth_args)[0] + '}'
                 if cls in HBNBCommand.__models and meth_name in methods:
                         do_ = methods[meth_name]
