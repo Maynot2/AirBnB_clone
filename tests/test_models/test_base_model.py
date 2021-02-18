@@ -19,7 +19,7 @@ class TestBase(unittest.TestCase):
 
     def test_saving_BaseModel_object(self):
         self.b1.save()
-        self.assertNotEqual(b1.created_at, b1.updated_at)
+        self.assertNotEqual(self.b1.created_at, self.b1.updated_at)
 
     def test_has_id(self):
         self.assertIsNotNone(self.b1.id)
