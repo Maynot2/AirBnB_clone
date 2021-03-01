@@ -66,6 +66,7 @@
   visibility: hidden;
   opacity: 0;
   transition: all ease 0.4s;
+  z-index: 1;
 }
 
 .popover li {

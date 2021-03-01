@@ -43,3 +43,7 @@ body {
   width: 100%;
   max-width: 1000px;
 }
+
+h1, h2, h3 {
+  font-weight: 600;
+}
