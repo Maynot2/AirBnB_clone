@@ -1,0 +1,50 @@
+/* Simple CSS reset */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Common */
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #484848;
+  font-size: 14px;
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 5px;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
