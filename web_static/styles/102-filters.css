@@ -108,5 +108,6 @@
 .filters .amenities {
   width: 50%;
   height: inherit;
+  padding-bottom: 10px;
 }
 }
