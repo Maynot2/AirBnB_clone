@@ -1,0 +1,142 @@
+.places {
+  padding-top: 4%;
+  padding-left: 2%;
+}
+
+.places h1,
+.places h2 {
+  font-size: 30px;
+}
+
+.places h2 {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.places .wrapper-flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.places .wrapper-flex article {
+  width: 390px;
+  border: #FF5A5F solid 1px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px;
+}
+
+article {
+  position: relative;
+}
+
+.price-by-night {
+  display: inline-block;
+  position: absolute;
+  right: 21px;
+  top: 13px;
+  color: #FF5A5F;
+  font-size: 26px;
+  border: solid 4px #FF5A5F;
+  border-radius: 100px;
+  min-width: 65px;
+  height: 65px;
+  padding-top: 3.4%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  border-top: solid #DDD 1px;
+  border-bottom: solid #DDD 1px;
+}
+
+.information div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100px;
+  height: 80px;
+}
+
+.information div p {
+  padding-bottom: 4%;
+}
+
+.max-guest {
+  background: url("../images/icon-group.png") no-repeat center 8px;
+}
+
+.number-rooms {
+  background: url("../images/icon-bed.png") no-repeat center 8px;
+}
+
+.number-bathrooms {
+  background: url("../images/icon-bath.png") no-repeat center 8px;
+}
+
+.user {
+  padding-top: 20px;
+}
+
+.description {
+  margin-top: 7px;
+}
+
+.places ul {
+  margin-top: 15px;
+}
+
+.places .amenities,
+.places .reviews {
+  margin-top: 40px;
+}
+
+.places .amenities ul li {
+  margin-bottom: 10px;
+}
+.places .reviews ul li {
+  margin-bottom: 15px;
+}
+
+.places .amenities h2,
+.places .reviews h2 {
+  font-size: 16px;
+  text-align: left;
+  margin-top: 0;
+  padding-bottom: 5px;
+  border-bottom: solid #DDD 1px;
+}
+
+.places .reviews h3 {
+  font-size: 14px;
+}
+
+.places .reviews p {
+  font-size: 12px;
+}
+
+/* amenities list icons */
+
+.places li {
+  background-repeat:  no-repeat;
+  background-size: contain;
+  padding-left: 8%;
+  padding-bottom: 0.5%;
+  padding-top: 0.5%;
+}
+
+li[data-type="pet"] {
+  background-image: url("../images/icon-pets.png");
+}
+
+li[data-type="wifi"] {
+  background-image: url("../images/icon-wifi.png");
+}
+
+li[data-type="tv"] {
+  background-image: url("../images/icon-tv.png");
+}
